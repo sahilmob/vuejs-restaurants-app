@@ -9,15 +9,15 @@
                         <th>Add to basket</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody v-for="item in menuItems">
                     <tr>
                         <td>
-                            <strong>Marghrita</strong>
+                            <strong>{{item.name}}</strong>
                         </td>
                     </tr>
-                    <tr>
-                        <td>9"</td>
-                        <td>12.95</td>
+                    <tr v-for="option in item.options">
+                        <td>option.sizd</td>
+                        <td>option.price</td>
                         <td>
                             <button class="btn btn-sm btn-outline-success" type="button">+</button>
                         </td>
@@ -29,7 +29,58 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      menuItems: {
+        1: {
+          name: "Margherita",
+          description: "A delicious tomato based pizza topped with mozzarella",
+          options: [
+            {
+              size: 9,
+              price: 6.95
+            },
+            {
+              size: 12,
+              price: 10.95
+            }
+          ]
+        },
+        2: {
+          name: "Pepperoni",
+          description:
+            "A delicious tomato based pizza topped with mozzarella and pepperoni",
+          options: [
+            {
+              size: 9,
+              price: 7.95
+            },
+            {
+              size: 12,
+              price: 12.95
+            }
+          ]
+        },
+        3: {
+          name: "Ham and Pineapple",
+          description:
+            "A delicious tomato based pizza topped with mozzarella, ham and pineapple",
+          options: [
+            {
+              size: 9,
+              price: 7.95
+            },
+            {
+              size: 12,
+              price: 12.95
+            }
+          ]
+        }
+      }
+    };
+  }
+};
 </script>
 
 <style>
