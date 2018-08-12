@@ -1,5 +1,5 @@
 <template>
-    <di class="row">
+    <div class="row">
         <div class="col-sm-12 col-md-6">
             <table class="table table-hover">
                 <thead class="thead-default">
@@ -19,13 +19,14 @@
                         <td>option.sizd</td>
                         <td>option.price</td>
                         <td>
-                            <button class="btn btn-sm btn-outline-success" type="button">+</button>
+                            <button class="btn btn-sm btn-outline-success" type="button" @click="addToBasket(item, option)">+</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </di>
+        {{basket}}
+    </div>
 </template>
 
 <script>
@@ -77,8 +78,19 @@ export default {
             }
           ]
         }
-      }
+      },
+      basket: []
     };
+  },
+  methods: {
+    addToBasket(item, option) {
+      this.basket.push({
+        name: item.name,
+        price: option.price,
+        size: option.size,
+        quantity: 1
+      });
+    }
   }
 };
 </script>
