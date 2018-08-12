@@ -26,28 +26,33 @@
             </table>
         </div>
         <div class="col-sm-12 col-md-6">
-            <table class="table">
-                <thead class="thead-default">
-                    <tr>
-                        <th>Quantity</th>
-                        <th>Item</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <button class="btn btn-sm" type="button">-</button>
-                            <span class="quantity">1-</span>
-                            <button class="btn btn-sm" type="button">+</button>
-                        </td>
-                        <td>Margjrerita 9"</td>
-                        <td>9.95</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p>Order total: </p>
-            <button class="btn btn-success btn-block">Place Order</button>
+            <div v-if="basket.length > 0">
+                <table class="table">
+                    <thead class="thead-default">
+                        <tr>
+                            <th>Quantity</th>
+                            <th>Item</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody v-for="item in basket">
+                        <tr>
+                            <td>
+                                <button class="btn btn-sm" type="button">-</button>
+                                <span class="quantity">{{item.quantity}}-</span>
+                                <button class="btn btn-sm" type="button">+</button>
+                            </td>
+                            <td>{{item.name}} {{item.size}}</td>
+                            <td>{{item.price * item.quantity}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Order total: </p>
+                <button class="btn btn-success btn-block">Place Order</button>
+            </div>
+            <div v-else>
+                <p>{{basketText}}</p>
+            </div>
         </div>
 
     </div>
@@ -103,7 +108,8 @@ export default {
           ]
         }
       },
-      basket: []
+      basket: [],
+      basketText: "Your basket is empty!"
     };
   },
   methods: {
