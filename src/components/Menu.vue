@@ -25,7 +25,31 @@
                 </tbody>
             </table>
         </div>
-        {{basket}}
+        <div class="col-sm-12 col-md-6">
+            <table class="table">
+                <thead class="thead-default">
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Item</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <button class="btn btn-sm" type="button">-</button>
+                            <span class="quantity">1-</span>
+                            <button class="btn btn-sm" type="button">+</button>
+                        </td>
+                        <td>Margjrerita 9"</td>
+                        <td>9.95</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Order total: </p>
+            <button class="btn btn-success btn-block">Place Order</button>
+        </div>
+
     </div>
 </template>
 
@@ -95,5 +119,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.quantity {
+  margin: 0 5px;
+}
 </style>
