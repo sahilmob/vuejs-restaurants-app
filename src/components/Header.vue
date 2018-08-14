@@ -3,12 +3,12 @@
         <nav class="navbar navbar-toggleable-md navbar-light">
             <a href="/" class="navbar-brand">Pizza Planet</a>
             <ul class="navbar-nav flex-row">
-                <li class="nav-item">
-                    <router-link to="/" class="nav-link">Home</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link to="/menu" class="nav-link">Menu</router-link>
-                </li>
+                <router-link to="/" class="nav-item" tag="li">
+                    <a class="nav-link">Home</a>
+                </router-link>
+                <router-link to="/menu" class="nav-item" tag="li">
+                    <a class="nav-link">Menu</a>
+                </router-link>
             </ul>
         </nav>
     </header>
