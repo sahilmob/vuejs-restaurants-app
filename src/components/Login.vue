@@ -9,14 +9,45 @@
                 <label>Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Enter password">
             </div>
-            <button type="button" class="btn btn-primary">Sign in</button>
-            <button type="button" class="btn btn-danger">Sign out</button>
+            <button type="button" class="btn btn-primary" @click.prevent="signIn">Sign in</button>
+            <button type="button" class="btn btn-danger" @click.prevent="sigOut">Sign out</button>
         </form>
     </div>
 </template>
 
 <script>
-export default {};
+import firebase from "firebase";
+export default {
+  methods: {
+    signIn() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .catch(err => {
+          var errCode = err.code;
+          var errMsg = err.message;
+
+          if (errCode === "auth/wrong-password") {
+            alert("Worng password");
+          } else {
+            alert(errMsg);
+          }
+        });
+    },
+    signOut() {
+      firebase.auth
+        .signOut()
+        .then(() => {
+          alert("Logged out");
+        })
+        .catch(err => {
+          alert("error.");
+        });
+    }
+  }
+};
 </script>
 
 <style>
