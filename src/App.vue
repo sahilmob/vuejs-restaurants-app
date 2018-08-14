@@ -3,6 +3,17 @@
     <div class="container">
       <pp-header> </pp-header>
       <router-view></router-view>
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <router-view name="ordering-guide"></router-view>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <router-view name="delivery"></router-view>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <router-view name="history"></router-view>
+        </div>
+      </div>
       <pp-footer></pp-footer>
     </div>
   </div>

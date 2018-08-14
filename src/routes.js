@@ -11,7 +11,12 @@ export const routes = [
     {
         path: '/',
         name: 'homeLink',
-        component: Home
+        components: {
+            default: Home,
+            'ordering-guide': OrderingGuide,
+            'delivery': Delivery,
+            'history': History
+        }
     },
     {
         path: '/menu',
