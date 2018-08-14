@@ -2,13 +2,13 @@
     <footer class="row">
         <nav class="navbar navbar-toggleable-md navbar-light">
             <ul class="navbar-nav flex-row">
-                <router-link to="/" class="nav-item" tag="li">
+                <router-link :to="{name: 'homeLink'}" class="nav-item" tag="li">
                     <a class="nav-link">Home</a>
                 </router-link>
-                <router-link to="/about" class="nav-item" tag="li">
+                <router-link :to="{name: 'aboutLink'}" class="nav-item" tag="li">
                     <a class="nav-link">About</a>
                 </router-link>
-                <router-link to="/admin" class="nav-item" tag="li">
+                <router-link :to="{name: 'aboutLink'}" class="nav-item" tag="li">
                     <a class="nav-link">Admin</a>
                 </router-link>
             </ul>

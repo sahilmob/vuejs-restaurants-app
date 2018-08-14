@@ -2,16 +2,16 @@
     <div>
         <nav class="navbar navbar-toggleable-md navbar-light">
             <ul class="navbar-nav flex-row">
-                <router-link to="/history" class="nav-item" tag="li">
+                <router-link :to="{name: 'historyLink'}" class="nav-item" tag="li">
                     <a class="nav-link">Our history</a>
                 </router-link>
-                <router-link to="/contact" class="nav-item" tag="li">
+                <router-link :to="{name: 'contactLink'}" class="nav-item" tag="li">
                     <a class="nav-link">Contact us</a>
                 </router-link>
-                <router-link to="/ordering-guide" class="nav-item" tag="li">
+                <router-link :to="{name: 'orderingGuideLink'}" class="nav-item" tag="li">
                     <a class="nav-link">Ordering guide</a>
                 </router-link>
-                <router-link to="/delivery" class="nav-item" tag="li">
+                <router-link :to="{name: 'deliveryLink'}" class="nav-item" tag="li">
                     <a class="nav-link">Delivery</a>
                 </router-link>
             </ul>
