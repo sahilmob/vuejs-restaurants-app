@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
       <pp-header> </pp-header>
-      <pp-menu></pp-menu>
+      <pp-admin></pp-admin>
       <pp-footer></pp-footer>
     </div>
   </div>
@@ -13,13 +13,15 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Menu from "./components/Menu";
+import Admin from "./components/Admin";
 
 export default {
   components: {
     ppHeader: Header,
     ppFooter: Footer,
     ppHome: Home,
-    ppMenu: Menu
+    ppMenu: Menu,
+    ppAdmin: Admin
   }
 };
 </script>
