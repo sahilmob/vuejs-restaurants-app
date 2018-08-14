@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-6 col-sm-12"></div>
+            <div class="col-md-6 col-sm-12">
+                <pp-new-pizza></pp-new-pizza>
+            </div>
             <div class="col-md-6 col-sm-12">
                 <h3>Menu</h3>
                 <table class="table table-hover">
@@ -59,7 +61,12 @@
 </template>
 
 <script>
-export default {};
+import NewPizza from "./NewPizza";
+export default {
+  components: {
+    ppNewPizza: NewPizza
+  }
+};
 </script>
 
 <style>
