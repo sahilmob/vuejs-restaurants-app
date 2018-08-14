@@ -8,7 +8,7 @@
                 <router-link :to="{name: 'aboutLink'}" class="nav-item" tag="li">
                     <a class="nav-link">About</a>
                 </router-link>
-                <router-link :to="{name: 'aboutLink'}" class="nav-item" tag="li">
+                <router-link :to="{name: 'adminLink'}" class="nav-item" tag="li">
                     <a class="nav-link">Admin</a>
                 </router-link>
             </ul>
