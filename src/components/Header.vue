@@ -3,10 +3,10 @@
         <nav class="navbar navbar-toggleable-md navbar-light">
             <a href="/" class="navbar-brand">Pizza Planet</a>
             <ul class="navbar-nav flex-row">
-                <router-link to="/" class="nav-item" tag="li">
+                <router-link :to="homeLink" class="nav-item" tag="li">
                     <a class="nav-link">Home</a>
                 </router-link>
-                <router-link to="/menu" class="nav-item" tag="li">
+                <router-link :to="menuLink" class="nav-item" tag="li">
                     <a class="nav-link">Menu</a>
                 </router-link>
             </ul>
@@ -15,7 +15,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      homeLink: "/",
+      menuLink: "/menu"
+    };
+  }
+};
 </script>
 
 <style scoped>
