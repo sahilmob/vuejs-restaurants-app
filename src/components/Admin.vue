@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <h3>Current orders:{{numberOfOrders}}</h3>
-                <table class="table table-sm">
+                <table class="table table-sm" v-for="orders in getOrders">
                     <thead class="thead-default">
                         <tr>
                             <th>Item</th>
@@ -45,13 +45,11 @@
                             </strong>
                             <button class="btn btn-outline-danger btn-sm">x</button>
                         </div>
-                        <tr>
-                            <td>Marghrita</td>
-                            <td>
-                                9"
-                            </td>
-                            <td>1</td>
-                            <td>6.95</td>
+                        <tr v-for="orderItms in orders['.value']">
+                            <td>{{orderItms.name}}</td>
+                            <td>{{orderItms.size}}</td>
+                            <td>{{orderItms.quantity}}</td>
+                            <td>{{orderItms.price}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -77,7 +75,7 @@ export default {
     ppLogin: Login
   },
   computed: {
-    ...mapGetters(["numberOfOrders", "getMenuItems"])
+    ...mapGetters(["numberOfOrders", "getMenuItems", "getOrders"])
   }
 };
 </script>
