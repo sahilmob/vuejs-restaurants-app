@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { stat } from 'fs';
 
 Vue.use(Vuex);
 
@@ -56,5 +57,8 @@ export const store = new Vuex.Store({
     getters: {
         getMenuItems: state => state.menuItems,
         numberOfOrders: state => state.orders.length
+    },
+    mutations: {
+        addOrder: (state, orders) => state.orders.push(orders)
     }
 })
