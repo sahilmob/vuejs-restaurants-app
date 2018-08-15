@@ -1,22 +1,35 @@
 <template>
-    <div class="row">
-        <form>
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password">
-            </div>
-            <button type="button" class="btn btn-primary" @click.prevent="signIn">Sign in</button>
-            <button type="button" class="btn btn-danger" @click.prevent="sigOut">Sign out</button>
-        </form>
+  <div class="row flex-column">
+    <div>
+      <p>Logged in as: <br>{{currentUser}}</p>
     </div>
+    <div>
+      <form>
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password">
+        </div>
+        <button type="button" class="btn btn-primary" @click.prevent="signIn">Sign in</button>
+        <button type="button" class="btn btn-danger" @click.prevent="signOut">Sign out</button>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
 import firebase from "firebase";
+import { store } from "../store/store";
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    store.dispatch("setUser", user);
+  } else {
+    store.dispatch("setUser", null);
+  }
+});
 export default {
   methods: {
     signIn() {
@@ -37,7 +50,8 @@ export default {
         });
     },
     signOut() {
-      firebase.auth
+      firebase
+        .auth()
         .signOut()
         .then(() => {
           alert("Logged out");
@@ -45,6 +59,11 @@ export default {
         .catch(err => {
           alert("error.");
         });
+    }
+  },
+  computed: {
+    currentUser() {
+      return this.$store.getters.currentUser;
     }
   }
 };
