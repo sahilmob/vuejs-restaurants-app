@@ -13,9 +13,9 @@
                             <th>Remove from menu</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody v-for="item in menuItems">
                         <tr>
-                            <td>Marghrita</td>
+                            <td>{{item.name}}</td>
                             <td>
                                 <button class="btn btn-outline-danger btn-sm">x</button>
                             </td>
@@ -73,6 +73,11 @@ export default {
   components: {
     ppNewPizza: NewPizza,
     ppLogin: Login
+  },
+  computed: {
+    menuItems() {
+      return this.$store.state.menuItems;
+    }
   }
 };
 </script>
