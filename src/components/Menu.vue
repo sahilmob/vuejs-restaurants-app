@@ -68,7 +68,8 @@ export default {
   },
   computed: {
     menuItems() {
-      return this.$store.state.menuItems;
+      // return this.$store.state.menuItems;
+      return this.$store.getters.getMenuItems;
     }
   },
   methods: {
