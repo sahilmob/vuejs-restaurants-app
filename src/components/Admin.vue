@@ -13,7 +13,7 @@
                             <th>Remove from menu</th>
                         </tr>
                     </thead>
-                    <tbody v-for="item in menuItems">
+                    <tbody v-for="item in getMenuItems">
                         <tr>
                             <td>{{item.name}}</td>
                             <td>
@@ -69,18 +69,15 @@
 <script>
 import NewPizza from "./NewPizza";
 import Login from "./Login";
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     ppNewPizza: NewPizza,
     ppLogin: Login
   },
   computed: {
-    menuItems() {
-      return this.$store.state.menuItems;
-    },
-    numberOfOrders() {
-      return this.$store.getters.numberOfOrders;
-    }
+    ...mapGetters(["numberOfOrders", "getMenuItems"])
   }
 };
 </script>

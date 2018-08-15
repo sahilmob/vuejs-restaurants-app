@@ -9,7 +9,7 @@
             <th>Add to basket</th>
           </tr>
         </thead>
-        <tbody v-for="item in menuItems">
+        <tbody v-for="item in getMenuItems">
           <tr>
             <td>
               <strong>{{item.name}}</strong>
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -68,10 +69,7 @@ export default {
     };
   },
   computed: {
-    menuItems() {
-      // return this.$store.state.menuItems;
-      return this.$store.getters.getMenuItems;
-    }
+    ...mapGetters(["getMenuItems"])
   },
   methods: {
     addToBasket(item, option) {
