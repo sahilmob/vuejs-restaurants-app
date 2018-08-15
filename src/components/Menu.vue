@@ -9,7 +9,7 @@
             <th>Add to basket</th>
           </tr>
         </thead>
-        <tbody v-for="item in getMenuItems">
+        <tbody v-for="item in getMenuItems" :key="item['.key']">
           <tr>
             <td>
               <strong>{{item.name}}</strong>
@@ -52,7 +52,6 @@
       </div>
       <div v-else>
         <p>{{basketText}}</p>
-        {{this.$store.state.orders}}
       </div>
     </div>
 
