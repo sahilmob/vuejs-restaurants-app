@@ -2,7 +2,7 @@
   <div class="row flex-column">
     <div>
       <p v-if="!currentUser">
-        Please login to continuew
+        Please login to continue
       </p>
       <p v-else>Logged in as: <br>{{currentUser}}</p>
     </div>
