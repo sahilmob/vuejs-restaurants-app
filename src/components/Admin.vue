@@ -1,61 +1,63 @@
 <template>
     <div>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <pp-new-pizza></pp-new-pizza>
+        <section v-if="currentUser">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <pp-new-pizza></pp-new-pizza>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h3>Menu</h3>
+                    <table class="table table-hover">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>Item</th>
+                                <th>Remove from menu</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="item in getMenuItems" :key="item['.key']">
+                            <tr>
+                                <td>{{item.name}}</td>
+                                <td>
+                                    <button class="btn btn-outline-danger btn-sm" @click="removeMenuItem(item['.key'])">x</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="col-md-6 col-sm-12">
-                <h3>Menu</h3>
-                <table class="table table-hover">
-                    <thead class="thead-default">
-                        <tr>
-                            <th>Item</th>
-                            <th>Remove from menu</th>
-                        </tr>
-                    </thead>
-                    <tbody v-for="item in getMenuItems" :key="item['.key']">
-                        <tr>
-                            <td>{{item.name}}</td>
-                            <td>
-                                <button class="btn btn-outline-danger btn-sm" @click="removeMenuItem(item['.key'])">x</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Current orders: {{numberOfOrders}}</h3>
+                    <table class="table table-sm" v-for="(orders, index) in getOrders" :key="orders['.key']">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>Item</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <div class="order-number">
+                                <strong>
+                                    <em>
+                                        Order Number: {{index+1}}
+                                    </em>
+                                </strong>
+                                <button class="btn btn-outline-danger btn-sm" @click="removeOrder(orders['.key'])">x</button>
+                            </div>
+                            <tr v-for="orderItms in orders['.value']">
+                                <td>{{orderItms.name}}</td>
+                                <td>{{orderItms.size}}</td>
+                                <td>{{orderItms.quantity}}</td>
+                                <td>{{orderItms.price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <h3>Current orders:{{numberOfOrders}}</h3>
-                <table class="table table-sm" v-for="(orders, index) in getOrders" :key="orders['.key']">
-                    <thead class="thead-default">
-                        <tr>
-                            <th>Item</th>
-                            <th>Size</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <div class="order-number">
-                            <strong>
-                                <em>
-                                    Order Number: {{index+1}}
-                                </em>
-                            </strong>
-                            <button class="btn btn-outline-danger btn-sm" @click="removeOrder(orders['.key'])">x</button>
-                        </div>
-                        <tr v-for="orderItms in orders['.value']">
-                            <td>{{orderItms.name}}</td>
-                            <td>{{orderItms.size}}</td>
-                            <td>{{orderItms.quantity}}</td>
-                            <td>{{orderItms.price}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <hr>
+            <hr>
+        </section>
         <div class="row">
             <div class="col-sm-12 col-lg-6">
                 <pp-login></pp-login>
@@ -76,7 +78,12 @@ export default {
     ppLogin: Login
   },
   computed: {
-    ...mapGetters(["numberOfOrders", "getMenuItems", "getOrders"])
+    ...mapGetters([
+      "numberOfOrders",
+      "getMenuItems",
+      "getOrders",
+      "currentUser"
+    ])
   },
   methods: {
     removeMenuItem(key) {
