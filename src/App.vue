@@ -37,4 +37,21 @@ export default {
 </script>
 
 <style>
+header,
+footer {
+  background: #eceeef;
+  padding: 20px 20px;
+  font-size: 1.2em;
+}
+
+footer {
+  margin-top: 20px;
+}
+
+.card {
+  background: #69ab64;
+  margin: 20px 0;
+  border-radius: 0;
+  padding: 20px;
+}
 </style>
