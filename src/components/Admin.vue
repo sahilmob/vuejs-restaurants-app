@@ -17,7 +17,7 @@
                         <tr>
                             <td>{{item.name}}</td>
                             <td>
-                                <button class="btn btn-outline-danger btn-sm">x</button>
+                                <button class="btn btn-outline-danger btn-sm" @click="removeMenuItem(item['.key'])">x</button>
                             </td>
                         </tr>
                     </tbody>
@@ -43,7 +43,7 @@
                                     Order Number: {{index+1}}
                                 </em>
                             </strong>
-                            <button class="btn btn-outline-danger btn-sm">x</button>
+                            <button class="btn btn-outline-danger btn-sm" @click="removeOrder(orders['.key'])">x</button>
                         </div>
                         <tr v-for="orderItms in orders['.value']">
                             <td>{{orderItms.name}}</td>
@@ -68,6 +68,7 @@
 import NewPizza from "./NewPizza";
 import Login from "./Login";
 import { mapGetters } from "vuex";
+import { dbMenuRef, dbOrdersRef } from "../firebaseConfig";
 
 export default {
   components: {
@@ -76,6 +77,14 @@ export default {
   },
   computed: {
     ...mapGetters(["numberOfOrders", "getMenuItems", "getOrders"])
+  },
+  methods: {
+    removeMenuItem(key) {
+      dbMenuRef.child(key).remove();
+    },
+    removeOrder(key) {
+      dbOrdersRef.child(key).remove();
+    }
   }
 };
 </script>
