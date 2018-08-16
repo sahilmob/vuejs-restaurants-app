@@ -2,9 +2,9 @@ import Home from './components/Home.vue'
 // Lazy loading Menu section
 const Menu = () => import('./components/Menu.vue')
 // Lazy loading admin section
-const Admin = () => import('./components/Admin.vue')
+const Admin = () => import(/* webpachChunkName: "footer-group" */ './components/Admin.vue')
 // Lazy loading about section
-const About = () => import('./components/About.vue')
+const About = () => import(/* webpachChunkName: "footer-group" */ './components/About.vue')
 import Contact from './components/Contact.vue'
 import History from './components/History.vue'
 import Delivery from './components/Delivery.vue'
