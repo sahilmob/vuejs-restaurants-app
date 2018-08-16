@@ -17,7 +17,7 @@
           </tr>
           <tr v-for="option in item.options">
             <td>{{option.size}}</td>
-            <td>{{option.price}}</td>
+            <td>{{option.price | currency}}</td>
             <td>
               <button class="btn btn-sm btn-outline-success" type="button" @click="addToBasket(item, option)">+</button>
             </td>
@@ -43,11 +43,11 @@
                 <button class="btn btn-sm" type="button" @click="increaseQuantity(item)">+</button>
               </td>
               <td>{{item.name}} {{item.size}}</td>
-              <td>{{item.price * item.quantity}}</td>
+              <td>{{item.price * item.quantity | currency}}</td>
             </tr>
           </tbody>
         </table>
-        <p>Order total: </p>
+        <p>Order total: {{total | currency}}</p>
         <button class="btn btn-success btn-block" @click="addNewOrder">Place Order</button>
       </div>
       <div v-else>
@@ -61,6 +61,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { dbOrdersRef } from "../firebaseConfig";
+import { retry } from "async";
 
 export default {
   data() {
@@ -70,7 +71,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getMenuItems"])
+    ...mapGetters(["getMenuItems"]),
+    total() {
+      var totalCost = 0;
+      for (var items in this.basket) {
+        var item = this.basket[items];
+        totalCost += item.quantity * item.price;
+      }
+      return totalCost;
+    }
   },
   methods: {
     addToBasket(item, option) {
