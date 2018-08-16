@@ -1,20 +1,23 @@
 <template>
   <div class="row flex-column">
     <div>
-      <p>Logged in as: <br>{{currentUser}}</p>
+      <p v-if="!currentUser">
+        Please login to continuew
+      </p>
+      <p v-else>Logged in as: <br>{{currentUser}}</p>
     </div>
     <div>
       <form>
-        <div class="form-group">
+        <div v-show="!currentUser" class="form-group">
           <label>Email address</label>
           <input type="email" class="form-control" id="email" placeholder="Enter email">
         </div>
-        <div class="form-group">
+        <div v-show="!currentUser" class="form-group">
           <label>Password</label>
           <input type="password" class="form-control" id="password" placeholder="Enter password">
         </div>
-        <button type="button" class="btn btn-primary" @click.prevent="signIn">Sign in</button>
-        <button type="button" class="btn btn-danger" @click.prevent="signOut">Sign out</button>
+        <button type="button" class="btn btn-primary" @click.prevent="signIn" v-if="!currentUser">Sign in</button>
+        <button type="button" class="btn btn-danger" @click.prevent="signOut" v-else>Sign out</button>
       </form>
     </div>
   </div>
